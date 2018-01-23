@@ -482,7 +482,7 @@ export default class App extends Component {
           />
           <LogoInput
             img={Card}
-            text='MAGSTIPE'
+            text='SOLRED'
             inputValue={this.state.readData.cardValue}
             style={logoInputSize}
           />
