@@ -242,7 +242,8 @@ export default class App extends Component {
         const str = realData.slice(21,36);
         let arr = [];
         for(let i = 0; i < 15; i++){
-          arr.push(str.charCodeAt(i).toString(16));
+          let n = str.charCodeAt(i).toString(16).length < 2 ? '0' + str.charCodeAt(i).toString(16) : str.charCodeAt(i).toString(16);
+          arr.push(n);
         }
         this.state.readData.versionNum = parseInt(arr[0],16) + '.' + parseInt(arr[1],16);
         this.state.readData.signalValue = parseInt(arr[2],16);
@@ -271,7 +272,7 @@ export default class App extends Component {
   handleReadData(data) {
     let arrData = [], testData = '';
     for(let j = 0; j < data.length; j++){
-      let m = data.charCodeAt(j).toString(16) < 10 ? '0' + data.charCodeAt(j).toString(16) : data.charCodeAt(j).toString(16);
+      let m = data.charCodeAt(j).toString(16).length < 2 ? '0' + data.charCodeAt(j).toString(16) : data.charCodeAt(j).toString(16);
       arrData.push(m);
     }
     testData = arrData.join(' ');
@@ -553,6 +554,9 @@ export default class App extends Component {
             </Text>
           </TouchableOpacity>
         </View>
+        <Text style={styles.version}>
+          V1.1
+        </Text>
       </View>
     );
   }
@@ -614,5 +618,13 @@ const styles = StyleSheet.create({
   searchDeviceTitle: {
     color: '#fff',
     fontSize: 18
+  },
+  version: {
+    fontSize: 14,    
+    color: '#000',
+    opacity: 0.2,
+    position: 'absolute',
+    bottom: 0,
+    left: 5
   }
 });
